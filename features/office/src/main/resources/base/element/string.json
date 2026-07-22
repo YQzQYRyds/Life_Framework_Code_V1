@@ -10,11 +10,11 @@
     },
     {
       "name": "appoint",
-      "value": "Appoint"
+      "value": "Online Service"
     },
     {
       "name": "credentials",
-      "value": "Cred"
+      "value": "Credentials"
     },
     {
       "name": "progress",
@@ -22,51 +22,143 @@
     },
     {
       "name": "walk",
-      "value": "Walk"
+      "value": "Transport"
     },
     {
       "name": "elderly_care",
-      "value": "Elderly"
+      "value": "Elderly Care"
     },
     {
       "name": "house",
-      "value": "House"
+      "value": "Housing"
     },
     {
       "name": "marriage",
       "value": "Marriage"
     },
     {
-      "name": "job",
-      "value": "Job"
-    },
-    {
-      "name": "apartment_rental",
-      "value": "Apartment"
-    },
-    {
-      "name": "licence_tag",
-      "value": "Licence"
-    },
-    {
-      "name": "service",
-      "value": "Serives"
-    },
-    {
       "name": "mainPage_top",
-      "value": "Police"
+      "value": "Birth Policy"
     },
     {
       "name": "mainPage_new",
-      "value": "mobility servic"
+      "value": "Enrollment Policy"
     },
     {
       "name": "mainPage_brand",
-      "value": "medical service"
+      "value": "Work Policy"
     },
     {
       "name": "mainPage_found",
-      "value": "Education Zone"
+      "value": "Life Policy"
+    },
+    {
+      "name": "service_category",
+      "value": "Service Category"
+    },
+    {
+      "name": "service_search",
+      "value": "Service Search"
+    },
+    {
+      "name": "service_detail",
+      "value": "Service Detail"
+    },
+    {
+      "name": "online_service",
+      "value": "Online Service"
+    },
+    {
+      "name": "all_categories",
+      "value": "All Categories"
+    },
+    {
+      "name": "hot_search",
+      "value": "Hot Search"
+    },
+    {
+      "name": "no_result",
+      "value": "No results found"
+    },
+    {
+      "name": "required_material",
+      "value": "Required"
+    },
+    {
+      "name": "optional_material",
+      "value": "Optional"
+    },
+    {
+      "name": "online_handle_btn",
+      "value": "Online Service"
+    },
+    {
+      "name": "service_dept",
+      "value": "Department"
+    },
+    {
+      "name": "service_duration",
+      "value": "Duration"
+    },
+    {
+      "name": "service_method",
+      "value": "Method"
+    },
+    {
+      "name": "service_fee",
+      "value": "Fee"
+    },
+    {
+      "name": "loading_text",
+      "value": "Loading..."
+    },
+    {
+      "name": "reload_btn",
+      "value": "Reload"
+    },
+    {
+      "name": "cancel_btn",
+      "value": "Cancel"
+    },
+    {
+      "name": "service_social_security",
+      "value": "Social Security"
+    },
+    {
+      "name": "service_fund",
+      "value": "Housing Fund"
+    },
+    {
+      "name": "service_household",
+      "value": "Household Registration"
+    },
+    {
+      "name": "service_entry_exit",
+      "value": "Entry & Exit"
+    },
+    {
+      "name": "service_transport",
+      "value": "Transport"
+    },
+    {
+      "name": "service_elderly",
+      "value": "Elderly Service"
+    },
+    {
+      "name": "service_property",
+      "value": "Property Service"
+    },
+    {
+      "name": "service_marriage",
+      "value": "Marriage Registration"
+    },
+    {
+      "name": "service_tax",
+      "value": "Tax Service"
+    },
+    {
+      "name": "service_education",
+      "value": "Education Service"
     }
   ]
 }

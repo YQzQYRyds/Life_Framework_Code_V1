@@ -28,10 +28,10 @@ export class MainViewModel {
    */
   getFirstGridData(): Array<ItemData> {
     let gridFirstData: ItemData[] = [
-      new ItemData($r('app.string.guide'), $r('app.media.spot_light')),
-      new ItemData($r('app.string.appoint'), $r("app.media.square_and_pencil")),
-      new ItemData($r('app.string.credentials'), $r('app.media.person_text_rectangle_fill')),
-      new ItemData($r('app.string.progress'), $r('app.media.notice_1')),
+      new ItemData($r('app.string.guide'), $r('app.media.spot_light'), 'ServiceCategory'),
+      new ItemData($r('app.string.appoint'), $r("app.media.square_and_pencil"), 'WebService'),
+      new ItemData($r('app.string.credentials'), $r('app.media.person_text_rectangle_fill'), 'ServiceDetail'),
+      new ItemData($r('app.string.progress'), $r('app.media.notice_1'), 'ServiceSearch'),
     ];
     return gridFirstData;
   }
@@ -43,10 +43,16 @@ export class MainViewModel {
    */
   getSecondGridData(): Array<ItemData> {
     let secondGridData: ItemData[] = [
-      new ItemData($r('app.string.walk'),$r('app.media.walk')),
-      new ItemData($r('app.string.elderly_care'), $r('app.media.elderly_care')),
-      new ItemData($r('app.string.house'), $r('app.media.house')),
-      new ItemData($r('app.string.marriage'), $r('app.media.marriage')),
+      new ItemData($r('app.string.service_social_security'), $r('app.media.work_serives')),
+      new ItemData($r('app.string.service_fund'), $r('app.media.work_serives')),
+      new ItemData($r('app.string.service_household'), $r('app.media.work_serives')),
+      new ItemData($r('app.string.service_entry_exit'), $r('app.media.work_serives')),
+      new ItemData($r('app.string.service_transport'), $r('app.media.work_serives')),
+      new ItemData($r('app.string.service_elderly'), $r('app.media.work_serives')),
+      new ItemData($r('app.string.service_property'), $r('app.media.work_serives')),
+      new ItemData($r('app.string.service_marriage'), $r('app.media.work_serives')),
+      new ItemData($r('app.string.service_tax'), $r('app.media.work_serives')),
+      new ItemData($r('app.string.service_education'), $r('app.media.work_serives')),
     ];
     return secondGridData;
   }
@@ -59,10 +65,10 @@ export class MainViewModel {
    */
   getThirdGridData(): Array<ItemData> {
     let thirdGridData: ItemData[] = [
-      new ItemData($r('app.string.mainPage_top'), $r('app.media.fig1')),
-      new ItemData($r('app.string.mainPage_new'), $r('app.media.fig2')),
-      new ItemData($r('app.string.mainPage_brand'), $r('app.media.fig1')),
-      new ItemData($r('app.string.mainPage_found'), $r('app.media.fig2'))
+      new ItemData($r('app.string.mainPage_top'), $r('app.media.chusheng'), 'WebService'),
+      new ItemData($r('app.string.mainPage_new'), $r('app.media.ruxue'), 'WebService'),
+      new ItemData($r('app.string.mainPage_brand'), $r('app.media.gongzuo'), 'WebService'),
+      new ItemData($r('app.string.mainPage_found'), $r('app.media.shenghuo'), 'WebService')
     ];
     return thirdGridData;
   }
