@@ -1,0 +1,168 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "便捷生活"
+    },
+    {
+      "name": "custom_tab_home",
+      "value": "首页"
+    },
+    {
+      "name": "custom_tab_news",
+      "value": "办事"
+    },
+    {
+      "name": "custom_tab_discovery",
+      "value": "发现"
+    },
+    {
+      "name": "custom_tab_message",
+      "value": "互动"
+    },
+    {
+      "name": "custom_tab_mine",
+      "value": "我的"
+    },
+    {
+      "name": "custom_tab_full_size",
+      "value": "100%"
+    },
+    {
+      "name": "custom_tab_scene_description",
+      "value": "功能介绍：Tab页签中间有一圈圆弧外轮廓效果，点击TabBar页签会改变图标显示，并有一小段动画效果"
+    },
+    {
+      "name": "login_page",
+      "value": "登录界面"
+    },
+    {
+      "name": "login_more",
+      "value": "登录帐号以使用更多服务"
+    },
+    {
+      "name": "account",
+      "value": "帐号"
+    },
+    {
+      "name": "password",
+      "value": "密码"
+    },
+    {
+      "name": "login",
+      "value": "登录"
+    },
+    {
+      "name": "register_account",
+      "value": "注册帐号"
+    },
+    {
+      "name": "forgot_password",
+      "value": "忘记密码"
+    },
+    {
+      "name": "message_login",
+      "value": "短信验证码登录"
+    },
+    {
+      "name": "other_login_method",
+      "value": "其他登录方式"
+    },
+    {
+      "name": "vertical_line",
+      "value": "  |  "
+    },
+    {
+      "name": "input_empty_tips",
+      "value": "输入不能为空"
+    },
+    {
+      "name": "login_success",
+      "value": "登录成功"
+    },
+    {
+      "name": "my_love",
+      "value": "我的最爱"
+    },
+    {
+      "name": "history_record",
+      "value": "历史记录"
+    },
+    {
+      "name": "message",
+      "value": "消息"
+    },
+    {
+      "name": "shopping_cart",
+      "value": "购物车"
+    },
+    {
+      "name": "my_goal",
+      "value": "我的目标"
+    },
+    {
+      "name": "group",
+      "value": "圈子"
+    },
+    {
+      "name": "favorites",
+      "value": "收藏"
+    },
+    {
+      "name": "recycle_bin",
+      "value": "回收站"
+    },
+    {
+      "name": "xiamen_station",
+      "value": "厦门站，我们不见不散"
+    },
+    {
+      "name": "more_big_names",
+      "value": "更多大牌"
+    },
+    {
+      "name": "push_notifications",
+      "value": "推送通知"
+    },
+    {
+      "name": "data_management",
+      "value": "数据管理"
+    },
+    {
+      "name": "menu_settings",
+      "value": "菜单设置"
+    },
+    {
+      "name": "about",
+      "value": "关于"
+    },
+    {
+      "name": "clear_cache",
+      "value": "清除缓存"
+    },
+    {
+      "name": "mainPage_tabTitles_home",
+      "value": "首页"
+    },
+    {
+      "name": "mainPage_tabTitles_mine",
+      "value": "我的"
+    },
+    {
+      "name": "login_account",
+      "value": "手机号/用户名/市民信箱账号/证件号"
+    },
+    {
+      "name": "login_password",
+      "value": "请输入登录密码"
+    }
+  ]
+}

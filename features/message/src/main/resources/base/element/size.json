@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "home_swiper_borderRadius",
+      "value": "40vp"
+    },
+    {
+      "name": "iconSize1",
+      "value": "19.05px"
+    },
+    {
+      "name": "iconSize2",
+      "value": "21.03px"
+    },
+    {
+      "name": "iconTextInterval",
+      "value": "5vp"
+    },
+    {
+      "name": "fontSize1",
+      "value": "10vp"
+    },
+    {
+      "name": "fontSize3",
+      "value": "15vp"
+    },
+    {
+      "name": "fontSize2",
+      "value": "20vp"
+    }
+  ]
+}

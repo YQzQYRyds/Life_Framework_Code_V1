@@ -1,0 +1,18 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "common": "file:../common/common",
+    "network": "file:../common/network",
+    "@ohos/home": "file:../features/home",
+    "@ohos/office": "file:../features/office",
+    "@ohos/MessagePage": "file:../features/message",
+    "@ohos/mine": "file:../features/mine",
+    "RouterModule": "file:../features/RouterModule",
+  }
+}
+

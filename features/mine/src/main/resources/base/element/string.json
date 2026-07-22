@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "account",
+      "value": "Account"
+    },
+    {
+      "name": "security",
+      "value": "Security"
+    },
+    {
+      "name": "house",
+      "value": "House"
+    },
+    {
+      "name": "Hos",
+      "value": "Hospital"
+    },
+    {
+      "name": "Car",
+      "value": "car"
+    },
+    {
+      "name": "Social_security",
+      "value": "Social security"
+    },
+    {
+      "name": "Card_case",
+      "value": "Card case"
+    },
+    {
+      "name": "credit",
+      "value": "Credit"
+    },
+    {
+      "name": "ID_card",
+      "value": "national ID card"
+    },
+    {
+      "name": "driver",
+      "value": "Driver"
+    },
+    {
+      "name": "marriage",
+      "value": "Marriage"
+    }
+  ]
+}

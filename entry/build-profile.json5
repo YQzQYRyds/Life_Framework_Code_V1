@@ -1,0 +1,39 @@
+{
+  "apiType": "stageMode",
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "packages": [
+          "@ohos/home",
+          "@ohos/office",
+          "@ohos/MessagePage",
+          "@ohos/mine",
+          "network",
+        ]
+      }
+    }
+  },
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": true,
+            "files": [
+              "./obfuscation-rules.txt"
+            ]
+          }
+        }
+      }
+    },
+  ],
+  "targets": [
+    {
+      "name": "default"
+    },
+    {
+      "name": "ohosTest",
+    }
+  ]
+}

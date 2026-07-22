@@ -1,0 +1,272 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "custom_tab_home",
+      "value": "首页"
+    },
+    {
+      "name": "custom_tab_news",
+      "value": "办事"
+    },
+    {
+      "name": "custom_tab_discovery",
+      "value": "发现"
+    },
+    {
+      "name": "custom_tab_message",
+      "value": "互动"
+    },
+    {
+      "name": "custom_tab_mine",
+      "value": "我的"
+    },
+    {
+      "name": "custom_tab_full_size",
+      "value": "100%"
+    },
+    {
+      "name": "custom_tab_scene_description",
+      "value": "功能介绍：Tab页签中间有一圈圆弧外轮廓效果，点击TabBar页签会改变图标显示，并有一小段动画效果"
+    },
+    {
+      "name": "vertical_line",
+      "value": "  |  "
+    },
+    {
+      "name": "input_empty_tips",
+      "value": "The input cannot be empty."
+    },
+    {
+      "name": "login_success",
+      "value": "The login is successful."
+    },
+    {
+      "name": "my_love",
+      "value": "My favorite"
+    },
+    {
+      "name": "history_record",
+      "value": "History"
+    },
+    {
+      "name": "message",
+      "value": "Message"
+    },
+    {
+      "name": "shopping_cart",
+      "value": "Shopping cart"
+    },
+    {
+      "name": "my_goal",
+      "value": "My goal"
+    },
+    {
+      "name": "group",
+      "value": "Group"
+    },
+    {
+      "name": "favorites",
+      "value": "Favorites"
+    },
+    {
+      "name": "recycle_bin",
+      "value": "Recycle Bin"
+    },
+    {
+      "name": "rankings",
+      "value": "Rankings"
+    },
+    {
+      "name": "new_product_debut",
+      "value": "New product debut"
+    },
+    {
+      "name": "big_name_flash",
+      "value": "Big name flash"
+    },
+    {
+      "name": "find_good",
+      "value": "Find good things"
+    },
+    {
+      "name": "xiamen_station",
+      "value": "Xiamen Station, we'll see you."
+    },
+    {
+      "name": "more_big_names",
+      "value": "More Big Names"
+    },
+    {
+      "name": "push_notifications",
+      "value": "Push Notifications"
+    },
+    {
+      "name": "data_management",
+      "value": "Data Management"
+    },
+    {
+      "name": "menu_settings",
+      "value": "Menu Settings"
+    },
+    {
+      "name": "about",
+      "value": "About"
+    },
+    {
+      "name": "clear_cache",
+      "value": "Clear Cache"
+    },
+    {
+      "name": "mainPage_tabTitles_home",
+      "value": "Home"
+    },
+    {
+      "name": "mainPage_tabTitles_mine",
+      "value": "Mine"
+    },
+    {
+      "name": "mainPage_top",
+      "value": "自助服务"
+    },
+    {
+      "name": "mainPage_new",
+      "value": "出行服务"
+    },
+    {
+      "name": "mainPage_brand",
+      "value": "医疗服务"
+    },
+    {
+      "name": "mainPage_found",
+      "value": "教育专区"
+    },
+    {
+      "name": "setting_account_name",
+      "value": "Mr. Lee"
+    },
+    {
+      "name": "setting_account_email",
+      "value": "2000000@shenhua.cc"
+    },
+    {
+      "name": "setting_list_news",
+      "value": "Push Notifications"
+    },
+    {
+      "name": "setting_list_data",
+      "value": "Data Management"
+    },
+    {
+      "name": "setting_list_menu",
+      "value": "Menu Settings"
+    },
+    {
+      "name": "setting_list_about",
+      "value": "Clear Cache"
+    },
+    {
+      "name": "setting_list_storage",
+      "value": "清除缓存"
+    },
+    {
+      "name": "setting_list_privacy",
+      "value": "Privacy Agreement"
+    },
+    {
+      "name": "setting_button",
+      "value": "Logout"
+    },
+    {
+      "name": "home_list",
+      "value": "List"
+    },
+    {
+      "name": "setting_toggle",
+      "value": "switch"
+    },
+    {
+      "name": "scan",
+      "value": "扫一扫"
+    },
+    {
+      "name": "code",
+      "value": "身份码"
+    },
+    {
+      "name": "credentials",
+      "value": "证件"
+    },
+    {
+      "name": "customer_serive",
+      "value": "客服"
+    },
+    {
+      "name": "Social_security",
+      "value": "社保"
+    },
+    {
+      "name": "cheque_sheet",
+      "value": "账单"
+    },
+    {
+      "name": "ticket",
+      "value": "淘票票"
+    },
+    {
+      "name": "Exit_Entry",
+      "value": "出入境"
+    },
+    {
+      "name": "Shopping",
+      "value": "购物"
+    },
+    {
+      "name": "More",
+      "value": "更多"
+    },
+    {
+      "name": "residence_permit",
+      "value": "居住证"
+    },
+    {
+      "name": "house",
+      "value": "租房"
+    },
+    {
+      "name": "all",
+      "value": "全部"
+    },
+    {
+      "name": "sublease",
+      "value": "分租"
+    },
+    {
+      "name": "whole",
+      "value": "整租"
+    },
+    {
+      "name": "one",
+      "value": "一居室"
+    },
+    {
+      "name": "two",
+      "value": "二居室"
+    },
+    {
+      "name": "three",
+      "value": "三居室"
+    },
+    {
+      "name": "hardcover",
+      "value": "精装"
+    },
+    {
+      "name": "lite",
+      "value": "简装"
+    }
+  ]
+}

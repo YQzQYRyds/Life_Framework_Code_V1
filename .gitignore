@@ -1,0 +1,33 @@
+# HarmonyOS / OpenHarmony dependencies
+oh_modules/
+**/oh_modules/
+
+# Hvigor caches and outputs
+.hvigor/
+**/.hvigor/
+**/build/
+**/outputs/
+
+# Test and preview generated files
+**/.test/
+**/.preview/
+
+# IDE configuration
+.idea/
+*.iml
+
+# Local environment files
+local.properties
+
+# Generated packages
+*.hap
+*.har
+*.app
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini

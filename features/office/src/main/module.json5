@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "office",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1"
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "account",
+      "value": "账号信息"
+    },
+    {
+      "name": "security",
+      "value": "安全中心"
+    },
+    {
+      "name": "house",
+      "value": "租房"
+    },
+    {
+      "name": "Hos",
+      "value": "就医"
+    },
+    {
+      "name": "Car",
+      "value": "车管"
+    },
+    {
+      "name": "Social_security",
+      "value": "五险一金"
+    },
+    {
+      "name": "Card_case",
+      "value": "卡包"
+    },
+    {
+      "name": "credit",
+      "value": "信用报告"
+    },
+    {
+      "name": "ID_card",
+      "value": "身份证"
+    },
+    {
+      "name": "driver",
+      "value": "驾驶证"
+    },
+    {
+      "name": "marriage",
+      "value": "结婚证"
+    }
+  ]
+}

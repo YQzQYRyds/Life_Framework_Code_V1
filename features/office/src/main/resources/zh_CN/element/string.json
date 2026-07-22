@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "guide",
+      "value": "指南"
+    },
+    {
+      "name": "appoint",
+      "value": "预约"
+    },
+    {
+      "name": "credentials",
+      "value": "证件"
+    },
+    {
+      "name": "progress",
+      "value": "进度"
+    },
+    {
+      "name": "walk",
+      "value": "出行"
+    },
+    {
+      "name": "elderly_care",
+      "value": "养老"
+    },
+    {
+      "name": "house",
+      "value": "房产"
+    },
+    {
+      "name": "marriage",
+      "value": "婚育"
+    },
+    {
+      "name": "mainPage_top",
+      "value": "自助服务"
+    },
+    {
+      "name": "mainPage_new",
+      "value": "出行服务"
+    },
+    {
+      "name": "mainPage_brand",
+      "value": "医疗服务"
+    },
+    {
+      "name": "mainPage_found",
+      "value": "教育专区"
+    }
+  ]
+}

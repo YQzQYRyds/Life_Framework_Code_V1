@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "shiweiBox",
+      "value": "市委领导信箱"
+    },
+    {
+      "name": "shizhengfuBox",
+      "value": "市政府领导信箱"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "home_swiper_borderRadius",
+      "value": "12vp"
+    },
+    {
+      "name": "iconSize",
+      "value": "12vp"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "routerMap": [
+    {
+      "name": "SocialSecurity",
+      "pageSourceFile": "src/main/ets/pages/SocialSecurityPage.ets",
+      "buildFunction": "SocialSecurityBuilder",
+      "data": {
+        "description": "this is SocialSecurity"
+      }
+    },
+    {
+      "name": "ChequeSheet",
+      "pageSourceFile": "src/main/ets/pages/ChequeSheetPage.ets",
+      "buildFunction": "ChequeSheetBuilder",
+      "data": {
+        "description": "this is ChequeSheet"
+      }
+    },
+    {
+      "name": "ResidencePermit",
+      "pageSourceFile": "src/main/ets/pages/ResidencePermitPage.ets",
+      "buildFunction": "ResidencePermitBuilder",
+      "data": {
+        "description": "this is ResidencePermit"
+      }
+    },
+    {
+      "name": "RentingHouse",
+      "pageSourceFile": "src/main/ets/pages/RentingHousePage.ets",
+      "buildFunction": "RentingHouseBuilder",
+      "data": {
+        "description": "RentingHouse"
+      }
+    },
+    {
+      "name": "ExitEntry",
+      "pageSourceFile": "src/main/ets/pages/ExitEntryPage.ets",
+      "buildFunction": "ExitEntryBuilder",
+      "data": {
+        "description": "ExitEntry"
+      }
+    },
+    {
+      "name": "code",
+      "pageSourceFile": "src/main/ets/pages/CodePage.ets",
+      "buildFunction": "CodeBuilder",
+      "data": {
+        "description": "Code "
+      }
+    }
+
+  ]
+}

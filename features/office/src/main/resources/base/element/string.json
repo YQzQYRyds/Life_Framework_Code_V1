@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "guide",
+      "value": "Guide"
+    },
+    {
+      "name": "appoint",
+      "value": "Appoint"
+    },
+    {
+      "name": "credentials",
+      "value": "Cred"
+    },
+    {
+      "name": "progress",
+      "value": "Progress"
+    },
+    {
+      "name": "walk",
+      "value": "Walk"
+    },
+    {
+      "name": "elderly_care",
+      "value": "Elderly"
+    },
+    {
+      "name": "house",
+      "value": "House"
+    },
+    {
+      "name": "marriage",
+      "value": "Marriage"
+    },
+    {
+      "name": "job",
+      "value": "Job"
+    },
+    {
+      "name": "apartment_rental",
+      "value": "Apartment"
+    },
+    {
+      "name": "licence_tag",
+      "value": "Licence"
+    },
+    {
+      "name": "service",
+      "value": "Serives"
+    },
+    {
+      "name": "mainPage_top",
+      "value": "Police"
+    },
+    {
+      "name": "mainPage_new",
+      "value": "mobility servic"
+    },
+    {
+      "name": "mainPage_brand",
+      "value": "medical service"
+    },
+    {
+      "name": "mainPage_found",
+      "value": "Education Zone"
+    }
+  ]
+}
