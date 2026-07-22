@@ -14,7 +14,8 @@
  */
 
 import { image } from '@kit.ImageKit';
-import { CallbackParam, CardRecognition, CardSide, CardType } from '@kit.VisionKit'
+// 模拟器临时注释，真机再放开
+// import { CallbackParam, CardRecognition, CardSide, CardType } from '@kit.VisionKit'
 import fs, { ReadOptions } from '@ohos.file.fs';
 import { BuilderNameConstants, RouterModule } from 'RouterModule';
 
@@ -36,18 +37,20 @@ struct CredentialsPage {
   build() {
     NavDestination() {
       Column() {
-        CardRecognition({
-          // 此处选择身份证类型作为示例 AUTO为自动识别
-          supportType: CardType.CARD_ID,
-          callback: (async (params: CallbackParam) => {
+        // =========模拟器临时注释识别组件=========
+        // CardRecognition({
+        //   // 此处选择身份证类型作为示例 AUTO为自动识别
+        //   supportType: CardType.CARD_ID,
+        //   callback: (async (params: CallbackParam) => {
 
-            let file = fs.openSync(params.cardInfo?.back.originalImageUri, fs.OpenMode.READ_ONLY)
-            let imageSource = image.createImageSource(file.fd)
-            this.chooseImage = await imageSource.createPixelMap()
-          })
-        }).onDisAppear(() => {
-          this.pathStack.pop()
-        })
+        //     let file = fs.openSync(params.cardInfo?.back.originalImageUri, fs.OpenMode.READ_ONLY)
+        //     let imageSource = image.createImageSource(file.fd)
+        //     this.chooseImage = await imageSource.createPixelMap()
+        //   })
+        // }).onDisAppear(() => {
+        //   this.pathStack.pop()
+        // })
+        Text('证件扫描页面（模拟器不支持卡证识别，请真机测试）')
       }
       .width('100%')
       .height('100%')
