@@ -10,7 +10,7 @@
     },
     {
       "name": "appoint",
-      "value": "预约"
+      "value": "在线办理"
     },
     {
       "name": "credentials",
@@ -38,19 +38,127 @@
     },
     {
       "name": "mainPage_top",
-      "value": "自助服务"
+      "value": "出生政策"
     },
     {
       "name": "mainPage_new",
-      "value": "出行服务"
+      "value": "入学政策"
     },
     {
       "name": "mainPage_brand",
-      "value": "医疗服务"
+      "value": "工作政策"
     },
     {
       "name": "mainPage_found",
-      "value": "教育专区"
+      "value": "生活政策"
+    },
+    {
+      "name": "service_category",
+      "value": "办事分类"
+    },
+    {
+      "name": "service_search",
+      "value": "办事搜索"
+    },
+    {
+      "name": "service_detail",
+      "value": "服务详情"
+    },
+    {
+      "name": "online_service",
+      "value": "在线办理"
+    },
+    {
+      "name": "all_categories",
+      "value": "全部分类"
+    },
+    {
+      "name": "hot_search",
+      "value": "热门搜索"
+    },
+    {
+      "name": "no_result",
+      "value": "未找到相关服务"
+    },
+    {
+      "name": "required_material",
+      "value": "必需"
+    },
+    {
+      "name": "optional_material",
+      "value": "选交"
+    },
+    {
+      "name": "online_handle_btn",
+      "value": "在线办理"
+    },
+    {
+      "name": "service_dept",
+      "value": "服务部门"
+    },
+    {
+      "name": "service_duration",
+      "value": "办理时限"
+    },
+    {
+      "name": "service_method",
+      "value": "办理方式"
+    },
+    {
+      "name": "service_fee",
+      "value": "收费标准"
+    },
+    {
+      "name": "loading_text",
+      "value": "正在加载..."
+    },
+    {
+      "name": "reload_btn",
+      "value": "重新加载"
+    },
+    {
+      "name": "cancel_btn",
+      "value": "取消"
+    },
+    {
+      "name": "service_social_security",
+      "value": "社保服务"
+    },
+    {
+      "name": "service_fund",
+      "value": "公积金"
+    },
+    {
+      "name": "service_household",
+      "value": "户籍办理"
+    },
+    {
+      "name": "service_entry_exit",
+      "value": "出入境"
+    },
+    {
+      "name": "service_transport",
+      "value": "交通出行"
+    },
+    {
+      "name": "service_elderly",
+      "value": "养老服务"
+    },
+    {
+      "name": "service_property",
+      "value": "房产服务"
+    },
+    {
+      "name": "service_marriage",
+      "value": "婚姻登记"
+    },
+    {
+      "name": "service_tax",
+      "value": "税务服务"
+    },
+    {
+      "name": "service_education",
+      "value": "教育服务"
     }
   ]
 }
