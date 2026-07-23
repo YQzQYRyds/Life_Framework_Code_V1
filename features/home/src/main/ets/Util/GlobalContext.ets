@@ -33,4 +33,8 @@ export class GlobalContext {
   setObject(key: string, objectClass: Object): void {
     this._objects.set(key, objectClass);
   }
+
+  deleteObject(key: string): void {
+    this._objects.delete(key);
+  }
 }

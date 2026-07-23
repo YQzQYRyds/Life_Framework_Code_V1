@@ -13,12 +13,8 @@
  * limitations under the License.
  */
 
-import { image } from '@kit.ImageKit';
-import { CallbackParam, CardRecognition, CardSide, CardType } from '@kit.VisionKit'
-import fs from '@ohos.file.fs';
+import { CardRecognition, CardRecognitionResult, CardType } from '@kit.VisionKit'
 import { BuilderNameConstants, RouterModule } from 'RouterModule';
-
-const TAG: string = 'CardRecognitionPage'
 
 
 @Builder
@@ -28,30 +24,68 @@ export function CredentialsBuilder() {
 
 @Component
 struct CredentialsPage {
-  @State chooseImage: PixelMap | undefined = undefined;
-  @State dataValues: string = '';
   @StorageLink('topRectHeight') topRectHeight: number = 0
   pathStack: NavPathStack = new NavPathStack()
 
+  private goBack(): void {
+    try {
+      this.pathStack.pop()
+    } catch {
+      // 路由栈尚未就绪或页面已退出时无需再次回退。
+    }
+  }
+
+  private handleRecognitionResult(isSuccess: boolean): void {
+    try {
+      const message = isSuccess ? '证件识别完成' : '证件识别已取消或失败'
+      this.getUIContext().getPromptAction().showToast({ message: message })
+    } catch {
+      // Toast 失败不应影响识别页安全退出。
+    }
+    this.goBack()
+  }
+
+  @Builder
+  UnsupportedView() {
+    Column({ space: 16 }) {
+      Image($r('app.media.cards_filled'))
+        .width(96)
+        .height(96)
+      Text('当前设备不支持证件识别')
+        .fontSize('22fp')
+        .fontWeight(FontWeight.Bold)
+      Text('VisionKit 证件识别不支持模拟器，请在支持该能力的 HarmonyOS 真机上测试。')
+        .fontSize('15fp')
+        .fontColor('#666666')
+        .textAlign(TextAlign.Center)
+        .lineHeight('22fp')
+        .margin({ right: '28vp', left: '28vp' })
+      Button('返回')
+        .width('160vp')
+        .height('44vp')
+        .margin({ top: '8vp' })
+        .onClick(() => {
+          this.goBack()
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+
   build() {
     NavDestination() {
-      Column() {
+      if (canIUse('SystemCapability.AI.Component.CardRecognition')) {
         CardRecognition({
           // 此处选择身份证类型作为示例 AUTO为自动识别
           supportType: CardType.CARD_ID,
-          callback: (async (params: CallbackParam) => {
-
-            let file = fs.openSync(params.cardInfo?.back.originalImageUri, fs.OpenMode.READ_ONLY)
-            let imageSource = image.createImageSource(file.fd)
-            this.chooseImage = await imageSource.createPixelMap()
+          onResult: ((params: CardRecognitionResult) => {
+            this.handleRecognitionResult(params.code === 0)
           })
-        }).onDisAppear(() => {
-          this.pathStack.pop()
         })
+      } else {
+        this.UnsupportedView()
       }
-      .width('100%')
-      .height('100%')
-      .justifyContent(FlexAlign.Center)
     }.title('扫描证件')
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack

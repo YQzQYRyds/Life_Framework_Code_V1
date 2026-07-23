@@ -130,19 +130,19 @@
     },
     {
       "name": "mainPage_top",
-      "value": "Police"
+      "value": "Self-Service"
     },
     {
       "name": "mainPage_new",
-      "value": "mobility servic"
+      "value": "Travel Service"
     },
     {
       "name": "mainPage_brand",
-      "value": "medical service"
+      "value": "Medical Service"
     },
     {
       "name": "mainPage_found",
-      "value": "Education Zone"
+      "value": "Education Service"
     },
     {
       "name": "setting_account_name",
