@@ -33,12 +33,12 @@ export struct ExitEntryPage {
   @StorageLink('topRectHeight') topRectHeight: number = 0
 
   private services: ServiceItem[] = [
-    { icon: $r('app.media.huzhao'), title: '护照办理', desc: '首次申领/换发/补发' } as ServiceItem,
-    { icon: $r('app.media.gangao'), title: '港澳通行证', desc: '签注申请/续签' } as ServiceItem,
-    { icon: $r('app.media.taiwan'), title: '台湾通行证', desc: '个人游/团队游签注' } as ServiceItem,
-    { icon: $r('app.media.qianzheng'), title: '签证办理', desc: '出国签证在线预约' } as ServiceItem,
-    { icon: $r('app.media.churu'), title: '出入境记录', desc: '查询个人出入境记录' } as ServiceItem,
-    { icon: $r('app.media.bianjian'), title: '边检公告', desc: '口岸通关指引及政策' } as ServiceItem,
+    { icon: $r('app.media.id'), title: '护照办理', desc: '首次申领/换发/补发' } as ServiceItem,
+    { icon: $r('app.media.exit'), title: '港澳通行证', desc: '签注申请/续签' } as ServiceItem,
+    { icon: $r('app.media.ticket'), title: '台湾通行证', desc: '个人游/团队游签注' } as ServiceItem,
+    { icon: $r('app.media.permit'), title: '签证办理', desc: '出国签证在线预约' } as ServiceItem,
+    { icon: $r('app.media.sheet'), title: '出入境记录', desc: '查询个人出入境记录' } as ServiceItem,
+    { icon: $r('app.media.news'), title: '边检公告', desc: '口岸通关指引及政策' } as ServiceItem,
   ]
 
   build() {

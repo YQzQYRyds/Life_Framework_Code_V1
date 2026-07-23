@@ -14,7 +14,7 @@
  */
 
 import { webview } from '@kit.ArkWeb';
-import { BuilderNameConstants, RouterModule, RouterNameConstants } from 'RouteModule/Index';
+import { BuilderNameConstants, RouterModule, RouterNameConstants } from 'RouterModule';
 
 
 @Builder
