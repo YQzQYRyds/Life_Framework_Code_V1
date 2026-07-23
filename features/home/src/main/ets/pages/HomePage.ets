@@ -13,50 +13,28 @@
  * limitations under the License.
  */
 
-// 全局通用常量
 import CommonConstants from 'common/constants/CommonConstants'
-// 首页视图模型：提供各个网格入口的配置数据
 import mainViewModel from '../viewmodle/MainViewModel'
-// 服务入口单项数据实体类（图标、名称、标题、路由标识）
 import ItemData from '../viewmodle/ItemData'
-// 简易弹窗Toast工具
 import { promptAction } from '@kit.ArkUI'
-// 扫码ScanKit能力：扫码配置、扫码核心枚举
 import { scanBarcode, scanCore } from '@kit.ScanKit';
-// ImageKit图像模块，用于承载生成的二维码PixelMap
 import { image } from '@kit.ImageKit';
-// 日志打印工具、错误类型定义
+// 导入默认界面需要的日志模块和错误码模块
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-// Context类型，供扫码组件使用
-import { Context } from '@kit.AbilityKit';
-// 项目自定义路由框架：路由常量、路由构建工具、路由注册管理器
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'RouterModule'
-// 通用工具类：二维码生成方法
 import { UtilTools } from '../Util/UtilTools'
-// 全局上下文，跨页面传递PixelMap二维码图像
 import { GlobalContext } from '../Util/GlobalContext'
 import './TicketPage'
 import './ExitEntryPage'
 import './ShoppingPage'
 
 
-// 城市选择器组件
-import { CityPicker } from '../components/CityPicker'
-
-/**
- * 路由入口Builder包装函数
- * 供全局路由框架调用，渲染首页组件
- */
 @Builder
 export function HomePageBuilder() {
   HomePage()
 }
 
-/**
- * 第一行网格【智慧识别区】：扫码、身份二维码、证件识别等核心能力入口
- * 数据由ViewModel传入ItemData数组驱动渲染
- */
 @Builder
 function SearchBuilder() {
   Row() {
@@ -80,71 +58,7 @@ function SearchBuilder() {
   }
   .width(CommonConstants.FULL_PARENT)
 }
-function FirstGridBuilder(items: ItemData[], context: Context) {
-  Grid() {
-    ForEach(items, (item: ItemData) => {
-      GridItem() {
-        Column() {
-          Image(item.img)
-            .width(px2vp(48 * 3.5))
-            .height(px2vp(48 * 3.5))
-          Text(item.title)
-            .fontSize(px2vp(16 * 3.5))
-            .fontColor(Color.White)
-            .margin({ top: px2vp(8 * 3.5) })
-        }
-      }
-      .onClick(() => {
-        // 根据入口name区分业务逻辑
-        switch (item.name) {
-          case 'scan':
-            // 启动系统ScanKit扫码
-            let options: scanBarcode.ScanOptions = {
-              scanTypes: [scanCore.ScanType.ALL],
-              enableMultiMode: true,
-              enableAlbum: true
-            };
-            scanBarcode.startScanForResult(context, options).then((result: scanBarcode.ScanResult) => {
-              // 扫码成功，打印结果日志
-              hilog.info(0x0001, '[Scan CPSample]',
-                `Succeeded in getting ScanResult by promise with options, result is ${JSON.stringify(result)}`);
-            }).catch((error: BusinessError) => {
-              // 扫码失败/取消，捕获异常打印错误信息
-              hilog.error(0x0001, '[Scan CPSample]',
-                `Failed to get ScanResult by promise with options. Code:${error.code}, message: ${error.message}`);
-            });
-            break;
-          case 'Code':
-            // 生成身份二维码，将PixelMap存入全局上下文，再跳转身份码展示页面
-            UtilTools.getIns().creatQR().then((px: image.PixelMap | undefined) => {
-              if (px) {
-                GlobalContext.getContext().setObject('px', px)
-              }
-            })
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
-            break
-          case 'Credentials':
-            // 跳转证件识别页面
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
-            break
-          case 'customer':
-            // 跳转客服页面
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
-            break
-        }
-      })
-    }, (item: ItemData) => JSON.stringify(item))
-  }
-  .columnsTemplate('1fr 1fr 1fr 1fr')
-  .columnsGap('12vp')
-  .rowsGap('12vp')
-  .padding({ top: '25vp' })
-  .margin({ left: px2vp(15 * 3.5) })
-}
 
-/**
- * 第二网格【灵活办公民生服务入口】
- */
 @Builder
 function SecondGridBuilder(items: ItemData[]) {
   Grid() {
@@ -161,7 +75,6 @@ function SecondGridBuilder(items: ItemData[]) {
         }
       }
       .onClick(() => {
-        // 未完成开发入口弹出提示；已完成页面执行路由跳转
         if (item.name === 'More') {
           promptAction.showToast({
             message: '功能还在开发中'
@@ -181,11 +94,9 @@ function SecondGridBuilder(items: ItemData[]) {
   .backgroundColor(Color.White)
 }
 
-/**
- * 第三网格【精选主题推荐区域】
- */
 @Builder
 function ThirdGridBuilder(items: ItemData[]) {
+  // 网格
   Grid() {
     ForEach(items, (thirdItem: ItemData) => {
       GridItem() {
@@ -213,9 +124,6 @@ function ThirdGridBuilder(items: ItemData[]) {
   .margin({ top: px2vp(4 * 3.5), right: px2vp(10 * 3.5) })
 }
 
-/**
- * 板块标题公共Builder，复用标题样式
- */
 @Builder
 function TextBuilder(title: string, fSize: string = '18fp', fWeight: FontWeight = FontWeight.Medium,
   fColor: string = '#000000') {
@@ -228,34 +136,11 @@ function TextBuilder(title: string, fSize: string = '18fp', fWeight: FontWeight 
     .fontWeight(FontWeight.Bold)
 }
 
-/**
- * 智慧首页主页面组件
- */
+
 @Component
 export struct HomePage {
-  // 接收外部Navigation传入的导航栈
   @Prop homePageStack: NavPathStack
-  // 全局持久化顶部状态栏高度，沉浸式布局适配
   @StorageLink('topRectHeight') topRectHeight: number = 0
-  // 当前城市状态
-  @State currentCity: string = '城市'
-  // 城市选择器显示状态
-  @State isCityPickerShow: boolean = false
-  // UI上下文，供扫码组件使用
-  private context = getContext() as Context
-
-  showCityPicker() {
-    this.isCityPickerShow = true
-  }
-
-  closeCityPicker() {
-    this.isCityPickerShow = false
-  }
-
-  onCitySelect(city: string) {
-    this.currentCity = city
-    this.isCityPickerShow = false
-    promptAction.showToast({ message: `已选择：${city}` })
 
   @Builder
   FirstGridBuilder(items: ItemData[]) {
@@ -311,79 +196,43 @@ export struct HomePage {
   }
 
   build() {
-    Stack() {
-      Navigation(this.homePageStack) {
-        Scroll() {
+    Navigation(this.homePageStack) {
+      Scroll() {
+        Column() {
           Column() {
-            // 顶部区域：定位搜索 + 智慧识别入口网格
-            Column() {
-              Row() {
-                Row() {
-                  Image($r('app.media.ic_public_gps'))
-                    .width(px2vp(24 * 3.5))
-                    .height(px2vp(24 * 3.5))
-                  Text(this.currentCity)
-                    .fontSize(px2vp(18 * 3.5))
-                    .fontColor(Color.White)
-                    .margin({ left: px2vp(2.11 * 3.5)})
-                  Image($r('app.media.ic_public_arrow_right'))
-                    .width(px2vp(16 * 3.5))
-                    .height(px2vp(16 * 3.5))
-                    .margin({ left: px2vp(4 * 3.5)})
-                }
-                .margin({ left: px2vp(16 * 3.5)})
-                .onClick(() => {
-                  this.showCityPicker()
-                })
-                .width(px2vp(100 * 3.5))
-
-                Search({ placeholder: '搜索...' })
-                  .placeholderColor(Color.White)
-                  .searchIcon({ src: $r('app.media.ic_public_input_search') })
-                  .width(px2vp(248 * 3.5))
-                  .height(px2vp(40 * 3.5))
-                  .margin({ left: px2vp(14 * 3.5)})
-              }
-              .margin({ top: this.topRectHeight})
-
-              Row() {
-              FirstGridBuilder(mainViewModel.getFirstGridData(), this.context)
+            Row() {
+              SearchBuilder()
             }
-            }
+            .margin({ top: this.topRectHeight})
 
-            // 下方白色区域：灵活办公、精选主题板块
-            Column() {
-              TextBuilder('灵活办公')
-              SecondGridBuilder(mainViewModel.getSecondGridData())
-              TextBuilder('精选主题')
-              ThirdGridBuilder(mainViewModel.getThirdGridData())
+            Row() {
+              this.FirstGridBuilder(mainViewModel.getFirstGridData())
             }
-            .alignItems(HorizontalAlign.Start)
-            .height('100%')
-            .margin({ top: px2vp(28 * 3.5) })
-            .backgroundColor(Color.White)
           }
-        }
-        .height(CommonConstants.FULL_PARENT)
-        .scrollBar(BarState.Off)
-      }
-      .hideTitleBar(true)
-      .backgroundImage($r('app.media.background'))
-      .backgroundImageSize(ImageSize.Contain)
 
-      CityPicker({
-        isShow: $isCityPickerShow,
-        onSelect: (city: string) => {
-          this.onCitySelect(city)
+          Column() {
+            TextBuilder('灵活办公')
+            SecondGridBuilder(mainViewModel.getSecondGridData())
+            TextBuilder('精选主题')
+            ThirdGridBuilder(mainViewModel.getThirdGridData())
+          }
+          .alignItems(HorizontalAlign.Start)
+          .height('100%')
+          .margin({ top: px2vp(28 * 3.5) })
+          .backgroundColor(Color.White)
+          // .borderRadius(px2vp(16 * 3.5))
         }
-      })
+      }
+      .height(CommonConstants.FULL_PARENT)
+      .scrollBar(BarState.Off)
     }
-    .width('100%')
-    .height('100%')
+    .hideTitleBar(true)
+    .backgroundImage($r('app.media.background'))
+    .backgroundImageSize(ImageSize.Contain)
   }
 }
 
-// ===========路由自动注册===========
+
 const builderName = BuilderNameConstants.HOMEPAGE;
 if (!RouterModule.getBuilder(builderName)) {
   const builder: WrappedBuilder<[object]> = wrapBuilder(HomePageBuilder);
