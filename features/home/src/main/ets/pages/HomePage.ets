@@ -188,9 +188,17 @@ export struct HomePage {
               });
               break;
             case 'Code':
+              if (!canIUse('SystemCapability.Multimedia.Scan.GenerateBarcode')) {
+                GlobalContext.getContext().deleteObject('px')
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
+                promptAction.showToast({ message: '当前设备不支持动态生成，已显示演示身份码' })
+                break
+              }
               UtilTools.getIns().creatQR().then((px: image.PixelMap | undefined) => {
                 if (!px) {
-                  promptAction.showToast({ message: '身份码生成失败，请重试' })
+                  GlobalContext.getContext().deleteObject('px')
+                  buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
+                  promptAction.showToast({ message: '动态身份码生成失败，已显示演示身份码' })
                   return
                 }
                 GlobalContext.getContext().setObject('px', px)
@@ -198,7 +206,9 @@ export struct HomePage {
               }).catch((error: BusinessError) => {
                 hilog.error(0x0001, '[QRCode]',
                   `Failed to create QR code. Code:${error.code}, message:${error.message}`)
-                promptAction.showToast({ message: '身份码生成失败，请重试' })
+                GlobalContext.getContext().deleteObject('px')
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
+                promptAction.showToast({ message: '动态身份码生成失败，已显示演示身份码' })
               })
               break
             case 'Credentials':

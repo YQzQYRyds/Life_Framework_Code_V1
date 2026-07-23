@@ -37,28 +37,69 @@ export function CodeBuilder() {
 export struct Code {
   // 全局持久化状态栏高度，实现沉浸式适配，页面顶部避开系统状态栏
   @StorageLink('topRectHeight') topRectHeight: number = 0
-  // 从全局上下文读取预先生成好的二维码PixelMap图像对象
-  @State pixelMap: image.PixelMap = GlobalContext.getContext().getObject('px') as image.PixelMap
+  // 从全局上下文读取预先生成好的二维码；模拟器不支持生成时允许为空
+  @State pixelMap: image.PixelMap | undefined =
+    GlobalContext.getContext().getObject('px') as image.PixelMap | undefined
   // 导航栈实例，用于页面回退、路由操作
   pathStack: NavPathStack = new NavPathStack()
+
+  aboutToDisappear(): void {
+    if (this.pixelMap) {
+      try {
+        this.pixelMap.release()
+      } catch {
+        // PixelMap 可能已由系统回收，此处只保证页面退出时不再继续持有引用。
+      }
+      GlobalContext.getContext().deleteObject('px')
+    }
+  }
 
   build() {
     // Navigation官方路由页面容器
     NavDestination() {
       // 垂直弹性布局，让二维码图片居中展示
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        // 渲染二维码图像，固定尺寸，保持图像原始比例
-        Image(this.pixelMap).width(300).height(300).objectFit(ImageFit.Contain)
-        Text('示例条形码')
-          .fontSize('14fp')
-          .fontColor('#666666')
-          .margin({ top: '24vp', bottom: '8vp' })
-        // 当前条形码为课程演示素材，不代表真实证件数据。
-        Image($r('app.media.tiaoxingma'))
-          .width('80%')
-          .height(100)
-          .objectFit(ImageFit.Contain)
+        if (this.pixelMap) {
+          // 真机支持 Scan Kit 时展示动态生成的二维码
+          Image(this.pixelMap)
+            .width(300)
+            .height(300)
+            .objectFit(ImageFit.Contain)
+          Text('动态身份二维码')
+            .fontSize('16fp')
+            .fontWeight(FontWeight.Medium)
+            .margin({ top: '16vp' })
+        } else {
+          // 模拟器或不支持 Scan Kit 的设备使用本地演示素材，避免功能入口失败
+          Column({ space: 16 }) {
+            Image($r('app.media.id'))
+              .width(88)
+              .height(88)
+            Text('模拟器演示身份码')
+              .fontSize('20fp')
+              .fontWeight(FontWeight.Bold)
+            Image($r('app.media.tiaoxingma'))
+              .width('86%')
+              .height(110)
+              .objectFit(ImageFit.Contain)
+            Text('当前设备不支持 Scan Kit 动态生成，已使用本地演示码。')
+              .fontSize('14fp')
+              .fontColor('#666666')
+              .textAlign(TextAlign.Center)
+          }
+          .width('90%')
+          .padding({ top: '28vp', right: '20vp', bottom: '28vp', left: '20vp' })
+          .backgroundColor('#F7F8FA')
+          .borderRadius('16vp')
+        }
+        Text('仅用于课程功能演示，不代表真实身份或证件数据。')
+          .fontSize('13fp')
+          .fontColor('#99000000')
+          .textAlign(TextAlign.Center)
+          .margin({ top: '20vp', right: '24vp', left: '24vp' })
       }
+      .width('100%')
+      .height('100%')
     }
     // 导航栏标题
     .title('身份码')
