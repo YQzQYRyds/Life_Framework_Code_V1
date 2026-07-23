@@ -61,10 +61,10 @@ export class MainViewModel {
    */
   getThirdGridData(): Array<ItemData> {
     let thirdGridData: ItemData[] = [
-      new ItemData($r('app.string.mainPage_top'), $r('app.media.fig1')),
-      new ItemData($r('app.string.mainPage_new'), $r('app.media.fig2')),
-      new ItemData($r('app.string.mainPage_brand'), $r('app.media.fig1')),
-      new ItemData($r('app.string.mainPage_found'), $r('app.media.fig2'))
+      new ItemData($r('app.string.mainPage_top'), $r('app.media.chusheng'), 'WebService'),
+      new ItemData($r('app.string.mainPage_new'), $r('app.media.ruxue'), 'WebService'),
+      new ItemData($r('app.string.mainPage_brand'), $r('app.media.gongzuo'), 'WebService'),
+      new ItemData($r('app.string.mainPage_found'), $r('app.media.shenghuo'), 'WebService')
     ];
     return thirdGridData;
   }

@@ -90,7 +90,7 @@ function SecondGridBuilder(items: ItemData[]) {
 @Builder
 function ThirdGridBuilder(items: ItemData[]) {
   Grid() {
-    ForEach(items, (thirdItem: ItemData) => {
+    ForEach(items, (thirdItem: ItemData, index: number) => {
       GridItem() {
         Column() {
           Image(thirdItem.img)
@@ -105,6 +105,10 @@ function ThirdGridBuilder(items: ItemData[]) {
         }
         .alignItems(HorizontalAlign.Start)
       }
+      .onClick(() => {
+        AppStorage.setOrCreate('policySection', index)
+        buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.WebService)
+      })
       .margin({ right: px2vp(4 * 3.5), left: px2vp(10 * 3.5) })
     }, (secondItem: ItemData) => JSON.stringify(secondItem))
   }

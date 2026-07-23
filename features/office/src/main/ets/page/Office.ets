@@ -136,11 +136,8 @@ function ThirdGridBuilder(items: ItemData[]) {
         .alignItems(HorizontalAlign.Start)
       }
       .onClick(() => {
-        if (thirdItem.name) {
-          AppStorage.setOrCreate('policySection', idx)
-          buildRouterModel(RouterNameConstants.ENTRY_HAP,
-            BuilderNameConstants.OFFICE + '_' + thirdItem.name)
-        }
+        AppStorage.setOrCreate('policySection', idx)
+        buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.WebService)
       })
       .margin({ right: px2vp(4 * 3.5), left: px2vp(10 * 3.5) })
     }, (secondItem: ItemData, index: number) => JSON.stringify(secondItem))
