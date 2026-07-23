@@ -40,6 +40,9 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.Code:
       import("./src/main/ets/pages/CodePage");
       break;
+    case BuilderNameConstants.customer:
+      import("./src/main/ets/pages/CustomerServicePage");
+      break;
     default:
       break;
   }
