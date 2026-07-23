@@ -22,12 +22,19 @@ export class BuilderNameConstants {
   static readonly Credentials: string = '@ohos/home_Credentials';
   static readonly Code: string = '@ohos/home_Code';
   static readonly HOMEPAGE: string = '@ohos/home';
+  // 办事模块
+  static readonly OFFICE: string = '@ohos/office';
   static readonly LoginPage: string = '@ohos/mine_LoginPage';
   static readonly RegisterPage: string = '@ohos/mine_RegisteringPage';
   static readonly ForgetPassPage: string = '@ohos/mine_ForgetPassword';
   static readonly SecurityCenterPage: string = '@ohos/mine_SecurityCenter';
   static readonly WebPage: string = 'network_webPage';
   static readonly utilsMainPage: string = '@ohos/utils_MainPage';
+  // 办事模块页面路由
+  static readonly ServiceCategory: string = '@ohos/office_ServiceCategory';
+  static readonly ServiceSearch: string = '@ohos/office_ServiceSearch';
+  static readonly ServiceDetail: string = '@ohos/office_ServiceDetail';
+  static readonly WebService: string = '@ohos/office_WebService';
 }
 
 // Indicates the key of the routerMap table in the RouterModule.

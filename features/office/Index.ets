@@ -15,6 +15,30 @@
 
 import { BuilderNameConstants } from 'RouterModule/Index';
 
+// 预加载所有办事子页面，注册路由 Builder（import 必须在其他语句前）
+import './src/main/ets/page/ServiceCategoryPage'
+import './src/main/ets/page/ServiceSearchPage'
+import './src/main/ets/page/ServiceDetailPage'
+import './src/main/ets/page/WebServicePage'
 
 export { OfficePage } from './src/main/ets/page/Office'
 
+
+export function harInit(builderName: string): void {
+  switch (builderName) {
+    case BuilderNameConstants.ServiceCategory:
+      import("./src/main/ets/page/ServiceCategoryPage");
+      break;
+    case BuilderNameConstants.ServiceSearch:
+      import("./src/main/ets/page/ServiceSearchPage");
+      break;
+    case BuilderNameConstants.ServiceDetail:
+      import("./src/main/ets/page/ServiceDetailPage");
+      break;
+    case BuilderNameConstants.WebService:
+      import("./src/main/ets/page/WebServicePage");
+      break;
+    default:
+      break;
+  }
+}

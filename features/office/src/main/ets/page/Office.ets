@@ -16,6 +16,7 @@
 import CommonConstants from 'common/constants/CommonConstants'
 import mainViewModel from '../modle/MainViewModel'
 import ItemData from '../modle/ItemData'
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from 'RouterModule'
 
 @Builder
 export function officeBuilder() {
@@ -35,12 +36,15 @@ function SearchBuilder() {
       .fontColor(Color.White)
       .margin({ left: px2vp(2.11 * 3.5)})
 
-    Search({ placeholder: '搜索...' })
+    Search({ placeholder: '搜索办事服务...' })
       .placeholderColor(Color.White)
       .searchIcon({ src: $r('app.media.ic_public_input_search') })
       .width(px2vp(248 * 3.5))
       .height(px2vp(40 * 3.5))
       .margin({ left: px2vp(14 * 3.5)})
+      .onClick(() => {
+        buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.ServiceSearch)
+      })
 
   }
   .width(CommonConstants.FULL_PARENT)
@@ -61,6 +65,12 @@ function FirstGridBuilder(items: ItemData[]) {
             .margin({ top: px2vp(8 * 3.5) })
         }
       }
+      .onClick(() => {
+        if (item.name) {
+          buildRouterModel(RouterNameConstants.ENTRY_HAP,
+            BuilderNameConstants.OFFICE + '_' + item.name)
+        }
+      })
     }, (item: ItemData) => JSON.stringify(item))
   }
   .columnsTemplate('1fr 1fr 1fr 1fr')
@@ -71,35 +81,46 @@ function FirstGridBuilder(items: ItemData[]) {
 }
 
 @Builder
-function SecondGridBuilder(items: ItemData[], homePageStack: NavPathStack) {
+function ServiceGridBuilder() {
   Grid() {
-    ForEach(items, (item: ItemData) => {
+    ForEach(mainViewModel.getSecondGridData(), (item: ItemData, index: number) => {
       GridItem() {
         Column() {
-          Image(item.img)
-            .width(px2vp(24 * 3.5))
-            .height(px2vp(24 * 3.5))
+          Text(`${index + 1}`)
+            .fontSize(px2vp(14 * 3.5))
+            .fontColor(Color.White)
+            .fontWeight(FontWeight.Bold)
+            .width(px2vp(36 * 3.5))
+            .height(px2vp(36 * 3.5))
+            .backgroundColor('#FF6B35')
+            .borderRadius(px2vp(18 * 3.5))
+            .textAlign(TextAlign.Center)
           Text(item.title)
             .fontSize(px2vp(12 * 3.5))
             .margin({ top: '8vp' })
             .fontWeight(400)
+            .maxLines(1)
         }
       }
+      .onClick(() => {
+        buildRouterModel(RouterNameConstants.ENTRY_HAP,
+          BuilderNameConstants.OFFICE + '_' + 'ServiceDetail')
+      })
     }, (item: ItemData) => JSON.stringify(item))
   }
-  .columnsTemplate('1fr 1fr 1fr 1fr')
+  .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
   .rowsTemplate('1fr 1fr')
-  .columnsGap('8vp')
+  .columnsGap('4vp')
   .rowsGap('12vp')
-  .height('74vp')
-  .padding({ top: '12vp', bottom: '12vp' })
+  .height('130vp')
+  .padding({ top: '12vp', bottom: '12vp', left: '8vp', right: '8vp' })
   .backgroundColor(Color.White)
 }
 
 @Builder
-function ThirdGridBuilder(items: ItemData[], homePageStack?: NavPathStack) {
+function ThirdGridBuilder(items: ItemData[]) {
   Grid() {
-    ForEach(mainViewModel.getThirdGridData(), (thirdItem: ItemData) => {
+    ForEach(mainViewModel.getThirdGridData(), (thirdItem: ItemData, idx: number) => {
       GridItem() {
         Column() {
           Image(thirdItem.img)
@@ -108,14 +129,21 @@ function ThirdGridBuilder(items: ItemData[], homePageStack?: NavPathStack) {
             .borderRadius(px2vp(14 * 3.5))
             .margin({ top: px2vp(10 * 3.5) })
           Text(thirdItem.title)
-            .fontSize(px2vp(14 * 3.5))
-            .fontWeight(400)
+            .fontSize(px2vp(18 * 3.5))
+            .fontWeight(500)
             .margin({ top: px2vp(10 * 3.5) })
         }
         .alignItems(HorizontalAlign.Start)
       }
+      .onClick(() => {
+        if (thirdItem.name) {
+          AppStorage.setOrCreate('policySection', idx)
+          buildRouterModel(RouterNameConstants.ENTRY_HAP,
+            BuilderNameConstants.OFFICE + '_' + thirdItem.name)
+        }
+      })
       .margin({ right: px2vp(4 * 3.5), left: px2vp(10 * 3.5) })
-    }, (secondItem: ItemData) => JSON.stringify(secondItem))
+    }, (secondItem: ItemData, index: number) => JSON.stringify(secondItem))
   }
   .height(px2vp(300 * 3.5))
   .columnsTemplate('1fr 1fr')
@@ -159,8 +187,8 @@ export struct OfficePage {
 
           Column() {
             TextBuilder('灵活办公')
-            SecondGridBuilder(mainViewModel.getSecondGridData(), this.homePageStack)
-            TextBuilder('精选主题')
+            ServiceGridBuilder()
+            TextBuilder('最新政策')
             ThirdGridBuilder(mainViewModel.getThirdGridData())
           }
           .alignItems(HorizontalAlign.Start)
