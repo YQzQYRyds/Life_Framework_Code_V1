@@ -21,6 +21,9 @@ export class BuilderNameConstants {
   static readonly RentingHouse: string = '@ohos/home_RentingHouse';
   static readonly Credentials: string = '@ohos/home_Credentials';
   static readonly Code: string = '@ohos/home_Code';
+  static readonly CustomerService: string = '@ohos/home_customer';
+  // 兼容 7b7867b 已使用的旧字段名。
+  static readonly customer: string = '@ohos/home_customer';
   static readonly HOMEPAGE: string = '@ohos/home';
   // 办事模块
   static readonly OFFICE: string = '@ohos/office';
