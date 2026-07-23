@@ -16,8 +16,8 @@
 import CommonConstants from 'common/constants/CommonConstants'
 import SocialSecurityData, { Category } from '../viewmodle/SocialSecurityData'
 import SocialSecurityModel from '../viewmodle/SocialSecurityModel'
-import { promptAction } from '@kit.ArkUI'
 import { BuilderNameConstants, RouterModule } from 'RouterModule'
+import './SocialSecurityDetailPage'
 
 @Builder
 export function SocialSecurityBuilder() {
@@ -25,164 +25,174 @@ export function SocialSecurityBuilder() {
 }
 
 @Builder
-function HeadBuilder(socialSecurityData: SocialSecurityData) {
+function HeadBuilder(socialSecurityData: SocialSecurityData, pathStack: NavPathStack) {
   Column() {
     Row() {
+      Image($r('app.media.ic_public_back'))
+        .width('24vp')
+        .height('24vp')
+        .fillColor(Color.White)
+        .margin({ left: '16vp' })
+        .onClick(() => pathStack.pop())
+
       Row() {
         Text(`${socialSecurityData.name}`)
-          .fontSize(px2vp(18 * 3.5))
+          .fontSize('22vp')
           .fontWeight(600)
           .fontColor(Color.White)
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
         Text(' | ')
-          .fontSize(px2vp(18 * 3.5))
+          .fontSize('22vp')
           .fontWeight(600)
           .fontColor(Color.White)
-          .fontColor(Color.White)
-          .margin({ left: '10vp' })
-        Text(`${socialSecurityData.Company}`)
-          .fontColor(Color.White)
-          .fontSize(px2vp(18 * 3.5))
+          .margin({ left: '8vp', right: '8vp' })
+        Text(`${socialSecurityData.company}`)
+          .fontSize('22vp')
           .fontWeight(600)
           .fontColor(Color.White)
-          .margin({ left: '10vp' })
+          .margin({ left: '8vp' })
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
-      .justifyContent(FlexAlign.SpaceEvenly)
-      .margin({ top: px2vp(20 * 3.5), left: px2vp(102 * 3.5) })
-
-    }.justifyContent(FlexAlign.SpaceBetween)
-    .width(CommonConstants.FULL_PARENT)
-
-    Flex({
-      justifyContent: FlexAlign.SpaceEvenly,
-      direction: FlexDirection.Row
-    }) {
-      Row() {
-        Column() {
-          Text('账户状态')
-            .fontSize(px2vp(12 * 3.5))
-            .fontWeight(700)
-            .fontColor(Color.White)
-          Text(`${socialSecurityData.status ? '正常' : '停用'}`)
-            .fontSize(px2vp(14 * 3.5))
-            .fontWeight(400)
-            .fontColor(Color.White)
-            .margin({ top: '8vp' })
-        }
-        .margin({ top: px2vp(8 * 3.5), left: px2vp(50 * 3.5) })
-
-        Column() {
-          Text('个人账户')
-            .fontSize(px2vp(12 * 3.5))
-            .fontWeight(700)
-            .fontColor(Color.White)
-          Text(`${socialSecurityData.account}`)
-            .fontSize(px2vp(14 * 3.5))
-            .fontWeight(400)
-            .fontColor(Color.White)
-            .margin({ top: '8vp' })
-        }
-        .margin({ top: px2vp(8 * 3.5), right: px2vp(20 * 3.5) })
-
-      }
-      .justifyContent(FlexAlign.SpaceEvenly)
-      .margin({ top: '20vp' })
-      .width(CommonConstants.FULL_PARENT)
+      .layoutWeight(1)
+      .justifyContent(FlexAlign.Center)
+      .margin({ right: '16vp' })
     }
+    .width(CommonConstants.FULL_PARENT)
+    .margin({ top: '16vp' })
+
+    Column() {
+      Row() {
+        Text('参保城市：').fontSize('14vp').fontColor(Color.White).fontWeight(500)
+        Text(`${socialSecurityData.city}`).fontSize('14vp').fontColor(Color.White).fontWeight(400).margin({ left: '4vp' })
+        Text(' | ').fontSize('14vp').fontColor(Color.White).margin({ left: '8vp', right: '8vp' })
+        Text('缴费基数：').fontSize('14vp').fontColor(Color.White).fontWeight(500)
+        Text(`${socialSecurityData.baseAmount.toFixed(2)}`).fontSize('14vp').fontColor(Color.White).fontWeight(400).margin({ left: '4vp' })
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.Center)
+      .margin({ top: '16vp' })
+
+      Row() {
+        Text('账户状态：').fontSize('14vp').fontColor(Color.White).fontWeight(500)
+        Text(`${socialSecurityData.status ? '正常 ✔' : '停用'}`).fontSize('14vp').fontColor(Color.White).fontWeight(400).margin({ left: '4vp' })
+        Text(' | ').fontSize('14vp').fontColor(Color.White).margin({ left: '8vp', right: '8vp' })
+        Text('社保账号：').fontSize('14vp').fontColor(Color.White).fontWeight(500)
+        Text(`${socialSecurityData.idCard}`).fontSize('14vp').fontColor(Color.White).fontWeight(400).margin({ left: '4vp' })
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.Center)
+      .margin({ top: '12vp' })
+    }
+    .width(CommonConstants.FULL_PARENT)
+    .margin({ top: '20vp', bottom: '16vp' })
+    .padding({ left: '16vp', right: '16vp' })
 
   }
-  .onClick(() => {
-    promptAction.showToast({
-      message: '功能还在开发中'
-    })
-  })
   .width(CommonConstants.FULL_PARENT)
-  .height('150vp')
-
 }
 
 @Builder
-function CenterBuilder(categories: Category[]) {
+function CenterBuilder(categories: Category[], pathStack: NavPathStack, baseAmount: number) {
   Column() {
-    ForEach(categories, (item: Category) => {
-      Row() {
-        Row() {
-          Image(item.icon)
-            .width(px2vp(22 * 3.5))
-            .height(px2vp(22 * 3.5))
-            .margin({ left: px2vp(12 * 3.5) })
+    Scroll() {
+      Column() {
+        ForEach(categories, (item: Category) => {
+          Row() {
+            Image(item.icon)
+              .width('48vp')
+              .height('48vp')
+              .margin({ left: '16vp' })
+              .fillColor('#FF8C00')
 
-          Text(`${item.title}`)
-            .fontSize(px2vp(16 * 3.5))
-            .fontWeight(500)
-            .margin({ left: px2vp(18 * 3.5) })
-        }
-        .margin({ top: px2vp(8 * 3.5) })
-        .justifyContent(FlexAlign.Start)
+            Column() {
+              Text(`${item.title}`)
+                .fontSize('18vp')
+                .fontWeight(500)
+              if (item.desc) {
+                Text(`${item.desc}`)
+                  .fontSize('13vp')
+                  .fontColor(Color.Gray)
+                  .margin({ top: '6vp' })
+              }
+            }
+            .alignItems(HorizontalAlign.Start)
+            .margin({ left: '16vp' })
+            .layoutWeight(1)
 
-        Row() {
-          Text(`${item.money}`)
-            .fontSize(px2vp(14 * 3.5))
-            .fontWeight(400)
-          Image($r('app.media.ic_public_arrow_right'))
-            .width('22vp')
-            .height('22vp')
-        }
-        .opacity(0.5)
-        .margin({ top: px2vp(8 * 3.5) })
+            Column() {
+              Text(`${item.money.toFixed(2)}`)
+                .fontSize('20vp')
+                .fontColor('#333333')
+                .fontWeight(600)
+              if (item.subMoney) {
+                Text(`本月存缴: +${item.subMoney.toFixed(2)}`)
+                  .fontSize('12vp')
+                  .fontColor('#FF8C00')
+                  .margin({ top: '4vp' })
+              }
+            }
+            .alignItems(HorizontalAlign.End)
+            .margin({ right: '8vp' })
+
+            Image($r('app.media.ic_public_arrow_right'))
+              .width('20vp')
+              .height('20vp')
+              .opacity(0.5)
+          }
+          .width('100%')
+          .height('72vp')
+          .padding({ left: '8vp', right: '8vp' })
+          .alignItems(VerticalAlign.Center)
+          .onClick(() => {
+            // 使用普通对象字面量传参，避免类实例序列化丢失数据
+            let params: Record<string, Object> = {
+              'title': item.title,
+              'money': item.money,
+              'subMoney': item.subMoney || 0,
+              'desc': item.desc || '',
+              'baseAmount': baseAmount
+            };
+            pathStack.pushPathByName(CommonConstants.SocialSecurityDetail, params);
+          })
+        }, (item: Category) => JSON.stringify(item))
       }
-      .justifyContent(FlexAlign.SpaceBetween)
-      .width(CommonConstants.FULL_PARENT)
-      .height('50vp')
-      .onClick(() => {
-        promptAction.showToast({
-          message: '功能还在开发中'
-        })
-      })
-    }, (item: Category) => JSON.stringify(item))
+      .width('100%')
+      .padding({ top: '10vp', bottom: '20vp' })
+    }
+    .scrollBar(BarState.Off)
   }
-  .justifyContent(FlexAlign.Start)
-  .width(px2vp(328 * 3.5))
-  .height(px2vp(104 * 3.5))
+  .width('95%')
   .margin({ top: px2vp(21 * 3.5) })
   .backgroundColor(Color.White)
   .borderRadius(px2vp(12 * 3.5))
 }
 
-@Builder
-function TitleBuilder(title: string) {
-  Text(title)
-    .fontSize(px2vp(20 * 3.5))
-    .width(CommonConstants.FULL_PARENT)
-    .margin({ top: px2vp(14.5 * 3.5), left: px2vp(8 * 3.5) })
-    .fontColor(Color.White)
-    .fontWeight(700)
-    .opacity(0.9)
-}
-
-
 @Component
 struct SocialSecurityPage {
   pathStack: NavPathStack = new NavPathStack()
+  @StorageLink('topRectHeight') topRectHeight: number = 0
 
   build() {
     NavDestination() {
       Column() {
-        HeadBuilder(SocialSecurityModel.getBillsData())
-        CenterBuilder(SocialSecurityModel.getBillsData().categories)
+        HeadBuilder(SocialSecurityModel.getBillsData(), this.pathStack)
+        CenterBuilder(SocialSecurityModel.getBillsData().categories, this.pathStack,
+          SocialSecurityModel.getBillsData().baseAmount)
       }
-      .margin({top:30})
+      .width('100%')
     }
     .hideTitleBar(true)
+    .padding({ top: this.topRectHeight })
+    .backgroundColor('#F1F3F5')
+    .backgroundImage($r('app.media.background'))
+    .backgroundImageSize({ width: '100%', height: px2vp(235 * 3.5) })
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack
     })
-    .backgroundColor('#F1F3F5')
-    .backgroundImage($r('app.media.background'))
-    .backgroundImageSize({ width: px2vp(360 * 3.5), height: px2vp(235 * 3.5) })
-
   }
 }
-
 
 const builderName = BuilderNameConstants.SocialSecurity;
 if (!RouterModule.getBuilder(builderName)) {

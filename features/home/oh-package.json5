@@ -1,13 +1,17 @@
 {
-  "name": "home",
+  "name": "@ohos/home",
   "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "Index.ets",
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-
     "common": "file:../../common/common",
     "RouterModule": "file:../RouterModule"
+  },
+  "exports": {
+    ".": "./Index.ets",
+    "./pages/*": "./src/main/ets/pages/*",
+    "./viewmodle/*": "./src/main/ets/viewmodle/*"
   }
 }

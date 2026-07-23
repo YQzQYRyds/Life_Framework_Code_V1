@@ -25,8 +25,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'RouterModule'
 import { UtilTools } from '../Util/UtilTools'
 import { GlobalContext } from '../Util/GlobalContext'
+import './TicketPage'
+import './ExitEntryPage'
+import './ShoppingPage'
 
-let homePageContext: Context | null = null;
 
 @Builder
 export function HomePageBuilder() {
@@ -58,61 +60,6 @@ function SearchBuilder() {
 }
 
 @Builder
-function FirstGridBuilder(items: ItemData[]) {
-  Grid() {
-    ForEach(items, (item: ItemData) => {
-      GridItem() {
-        Column() {
-          Image(item.img)
-            .width(px2vp(48 * 3.5))
-            .height(px2vp(48 * 3.5))
-          Text(item.title)
-            .fontSize(px2vp(16 * 3.5))
-            .fontColor(Color.White)
-            .margin({ top: px2vp(8 * 3.5) })
-        }
-      }
-      .onClick(() => {
-        switch (item.name) {
-          case 'scan':
-            let options: scanBarcode.ScanOptions = {
-              scanTypes: [scanCore.ScanType.ALL],
-              enableMultiMode: true,
-              enableAlbum: true
-            };
-            // 可调用getContext接口获取当前页面关联的UIAbilityContext
-            scanBarcode.startScanForResult(homePageContext!, options).then((result: scanBarcode.ScanResult) => {
-              // 收到扫码结果后返回
-              hilog.info(0x0001, '[Scan CPSample]',
-                `Succeeded in getting ScanResult by promise with options, result is ${JSON.stringify(result)}`);
-            }).catch((error: BusinessError) => {
-              hilog.error(0x0001, '[Scan CPSample]',
-                `Failed to get ScanResult by promise with options. Code:${error.code}, message: ${error.message}`);
-            });
-            break;
-          case 'Code':
-            UtilTools.getIns().creatQR().then((px: image.PixelMap | undefined) => {
-              if (px) {
-                GlobalContext.getContext().setObject('px', px)
-              }
-            })
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
-            break
-          case 'Credentials':
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
-            break
-        }
-      })
-    }, (item: ItemData) => JSON.stringify(item))
-  }
-  .columnsTemplate('1fr 1fr 1fr 1fr')
-  .columnsGap('12vp')
-  .rowsGap('12vp')
-  .padding({ top: '25vp' })
-  .margin({ left: px2vp(15 * 3.5) })
-}
-
-@Builder
 function SecondGridBuilder(items: ItemData[]) {
   Grid() {
     ForEach(items, (item: ItemData) => {
@@ -128,7 +75,7 @@ function SecondGridBuilder(items: ItemData[]) {
         }
       }
       .onClick(() => {
-        if (item.name === 'More' || item.name === 'ticket' || item.name === 'Shopping' || item.name === 'ExitEntry') {
+        if (item.name === 'More') {
           promptAction.showToast({
             message: '功能还在开发中'
           })
@@ -195,8 +142,57 @@ export struct HomePage {
   @Prop homePageStack: NavPathStack
   @StorageLink('topRectHeight') topRectHeight: number = 0
 
-  aboutToAppear(): void {
-    homePageContext = getContext(this);
+  @Builder
+  FirstGridBuilder(items: ItemData[]) {
+    Grid() {
+      ForEach(items, (item: ItemData) => {
+        GridItem() {
+          Column() {
+            Image(item.img)
+              .width(px2vp(48 * 3.5))
+              .height(px2vp(48 * 3.5))
+            Text(item.title)
+              .fontSize(px2vp(16 * 3.5))
+              .fontColor(Color.White)
+              .margin({ top: px2vp(8 * 3.5) })
+          }
+        }
+        .onClick(() => {
+          switch (item.name) {
+            case 'scan':
+              let options: scanBarcode.ScanOptions = {
+                scanTypes: [scanCore.ScanType.ALL],
+                enableMultiMode: true,
+                enableAlbum: true
+              };
+              scanBarcode.startScanForResult(getContext(this), options).then((result: scanBarcode.ScanResult) => {
+                hilog.info(0x0001, '[Scan CPSample]',
+                  `Succeeded in getting ScanResult by promise with options, result is ${JSON.stringify(result)}`);
+              }).catch((error: BusinessError) => {
+                hilog.error(0x0001, '[Scan CPSample]',
+                  `Failed to get ScanResult by promise with options. Code:${error.code}, message: ${error.message}`);
+              });
+              break;
+            case 'Code':
+              UtilTools.getIns().creatQR().then((px: image.PixelMap | undefined) => {
+                if (px) {
+                  GlobalContext.getContext().setObject('px', px)
+                }
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
+              })
+              break
+            case 'Credentials':
+              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
+              break
+          }
+        })
+      }, (item: ItemData) => JSON.stringify(item))
+    }
+    .columnsTemplate('1fr 1fr 1fr 1fr')
+    .columnsGap('12vp')
+    .rowsGap('12vp')
+    .padding({ top: '25vp' })
+    .margin({ left: px2vp(15 * 3.5) })
   }
 
   build() {
@@ -210,7 +206,7 @@ export struct HomePage {
             .margin({ top: this.topRectHeight})
 
             Row() {
-              FirstGridBuilder(mainViewModel.getFirstGridData())
+              this.FirstGridBuilder(mainViewModel.getFirstGridData())
             }
           }
 

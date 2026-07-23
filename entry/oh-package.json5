@@ -12,7 +12,7 @@
     "@ohos/office": "file:../features/office",
     "@ohos/MessagePage": "file:../features/message",
     "@ohos/mine": "file:../features/mine",
-    "RouterModule": "file:../features/RouterModule",
+    "RouterModule": "file:../features/RouterModule"
   }
 }
 

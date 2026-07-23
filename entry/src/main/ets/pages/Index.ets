@@ -12,15 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// 假设你的 SocialSecurityDetailPage.ets 在 pages 目录下
 
+
+// 导入 home 模块 pages 目录下的详情页
+// 在 Index.ets 最顶部的 import 区域，加上这一句：
 import { TABINFO } from '../model/TabBarData';
 import { TabBarDataType } from '../model/DataType';
 import { HomePage } from '@ohos/home'
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'RouterModule';
 import { OfficePage } from '@ohos/office';
+import { router } from '@kit.ArkUI';
 import { MessagePage } from '@ohos/MessagePage/src/main/ets/pages/MessagePage';
-import { LoginManager, MyPage } from '@ohos/mine';
-import { AppStorageKeys } from 'common';
+import { MyPage } from '@ohos/mine/src/main/ets/page/myPage'
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const HOME_TAB_BAR_INDEX: number = 0; // 初始化社区的tab下标
 
@@ -36,10 +41,12 @@ export function TabViewBuilder() {
 @Component
 export struct TabView {
   @Provide selectedIndex: number = 0; // 初始化被选定的tabBar下标
-  @StorageLink('switchToMineTab') @Watch('onSwitchToMineTab') switchToMineTab: boolean = false;
   private pageStack: NavPathStack = new NavPathStack();
   @State iconOffset: number = 0
   private controller: TabsController = new TabsController(); // 初始化Tab控制器
+  /*tab上一次跳转的index*/
+  private oldIndex: number = -1
+
   aboutToAppear(): void {
     if (!this.pageStack) {
       this.pageStack = new NavPathStack();
@@ -47,33 +54,10 @@ export struct TabView {
     RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.pageStack);
   }
 
-  onSwitchToMineTab(): void {
-    if (this.switchToMineTab) {
-      this.selectedIndex = 3;
-      AppStorage.setOrCreate(AppStorageKeys.SWITCH_TO_MINE_TAB, false);
-    }
-  }
-
   @Builder
   routerMap(builderName: string, param: object) {
-    if (RouterModule.hasBuilder(builderName)) {
+    if (RouterModule.getBuilder(builderName)) {
       RouterModule.getBuilder(builderName).builder(param);
-    } else {
-      Column({ space: 16 }) {
-        Text($r('app.string.route_load_failed'))
-          .fontSize(18)
-          .fontWeight(FontWeight.Medium)
-        Text(builderName)
-          .fontSize(12)
-          .fontColor('#666666')
-        Button($r('app.string.route_back'))
-          .onClick(() => {
-            RouterModule.pop(RouterNameConstants.ENTRY_HAP);
-          })
-      }
-      .width('100%')
-      .height('100%')
-      .justifyContent(FlexAlign.Center)
     }
   };
 
@@ -141,7 +125,6 @@ export struct TabView {
 struct CustomTabBar {
   @Link selectedIndex: number; // 初始化被选定的tabBar下标
   @State iconOffset: number = 0; // 初始化tabBar图片的偏移量
-  @StorageLink('bottomRectHeight') bottomRectHeight: number = 0;
 
   build() {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
@@ -155,7 +138,7 @@ struct CustomTabBar {
         })
       })
     }
-    .padding({ bottom: this.bottomRectHeight })
+    .padding({bottom:AppStorage.get('bottomRectHeight') as number})
     .height($r('app.integer.custom_tab_height_size'))
   }
 }
@@ -210,7 +193,7 @@ struct TabItem {
       }
 
       Text(TABINFO[this.tabBarIndex].title)
-        .fontSize($r('app.integer.custom_tab_text_font_size'))
+        .fontSize(px2vp(10 * 3.5))
         .fontWeight(500)
         .fontColor(this.selectedIndex === this.tabBarIndex ? $r('app.color.custom_tab_selected_text_color') :
         Color.Black)
@@ -219,8 +202,11 @@ struct TabItem {
     .onClick(() => {
       // 更新被选中的tabBar下标
       if (this.tabBarIndex == 3) {
-        if (!LoginManager.isLoggedIn()) {
-          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LoginPage);
+        let loginInfo: Record<string, string | number | boolean> | null | undefined = AppStorage.get('login');
+        let isLogin = loginInfo ? loginInfo['isLogin'] as boolean : false;
+        if (!isLogin) {
+          hilog.info(0x0000, 'ccTest isLogin=false', this.selectedIndex + '')
+          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LoginPage)
         } else {
           this.selectedIndex = this.tabBarIndex;
         }

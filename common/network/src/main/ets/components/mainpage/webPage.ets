@@ -14,7 +14,7 @@
  */
 
 import { webview } from '@kit.ArkWeb';
-import { BuilderNameConstants, RouterModule, RouterNameConstants } from 'RouterModule';
+import { BuilderNameConstants, RouterModule, RouterNameConstants } from 'RouteModule/Index';
 
 
 @Builder
@@ -44,7 +44,7 @@ export function webPageBuilder(value: object) {
   }
 }
 
-let builderName = BuilderNameConstants.WebPage;
+let builderName: string = BuilderNameConstants.WebPage;
 if (!RouterModule.getBuilder(builderName)) {
   const builder: WrappedBuilder<[object]> = wrapBuilder(webPageBuilder);
   RouterModule.registerBuilder(builderName, builder);

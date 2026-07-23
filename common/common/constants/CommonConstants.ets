@@ -81,5 +81,21 @@ export default class CommonConstants {
    * Mine tab index
    */
   static readonly MINE_TAB_INDEX = 1;
+  static readonly SocialSecurity = 'SocialSecurity';
+
+  /**
+   * 社保详情页路由名
+   */
+  static readonly SocialSecurityDetail = 'SocialSecurityDetail';
+
+  /**
+   * 居住证申请页路由名
+   */
+  static readonly ResidencePermitApply = 'ResidencePermitApply';
+
+  /**
+   * 居住登记页路由名
+   */
+  static readonly ResidenceRegister = 'ResidenceRegister';
 }
 
