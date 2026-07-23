@@ -25,14 +25,14 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.ChequeSheet:
       import("./src/main/ets/pages/ChequeSheetPage");
       break;
+    case BuilderNameConstants.SocialSecurity:
+      import("./src/main/ets/pages/SocialSecurityPage");
+      break;
     case BuilderNameConstants.RentingHouse:
       import("./src/main/ets/pages/RentingHousePage");
       break;
     case BuilderNameConstants.ResidencePermit:
       import("./src/main/ets/pages/ResidencePermitPage");
-      break;
-    case BuilderNameConstants.SocialSecurity:
-      import("./src/main/ets/pages/SocialSecurityPage");
       break;
     case BuilderNameConstants.Credentials:
       import("./src/main/ets/pages/CredentialsPage");
@@ -40,8 +40,14 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.Code:
       import("./src/main/ets/pages/CodePage");
       break;
-    case BuilderNameConstants.customer:
-      import("./src/main/ets/pages/CustomerServicePage");
+    case BuilderNameConstants.HOMEPAGE + '_ticket':
+      import("./src/main/ets/pages/TicketPage");
+      break;
+    case BuilderNameConstants.HOMEPAGE + '_Shopping':
+      import("./src/main/ets/pages/ShoppingPage");
+      break;
+    case BuilderNameConstants.HOMEPAGE + '_ExitEntry':
+      import("./src/main/ets/pages/ExitEntryPage");
       break;
     default:
       break;

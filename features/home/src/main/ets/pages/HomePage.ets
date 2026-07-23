@@ -36,6 +36,11 @@ import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstan
 import { UtilTools } from '../Util/UtilTools'
 // 全局上下文，跨页面传递PixelMap二维码图像
 import { GlobalContext } from '../Util/GlobalContext'
+import './TicketPage'
+import './ExitEntryPage'
+import './ShoppingPage'
+
+
 // 城市选择器组件
 import { CityPicker } from '../components/CityPicker'
 
@@ -53,6 +58,28 @@ export function HomePageBuilder() {
  * 数据由ViewModel传入ItemData数组驱动渲染
  */
 @Builder
+function SearchBuilder() {
+  Row() {
+    Image($r('app.media.ic_public_gps'))
+      .width(px2vp(24 * 3.5))
+      .height(px2vp(24 * 3.5))
+      .margin({ left: px2vp(16 * 3.5)})
+    Text('城市')
+      .fontSize(px2vp(18 * 3.5))
+      .fontColor(Color.White)
+      .margin({ left: px2vp(2.11 * 3.5)},)
+
+    Search({ placeholder: '搜索...' })
+      .placeholderColor(Color.White)
+      .searchIcon({ src: $r('app.media.ic_public_input_search') })
+      .width(px2vp(248 * 3.5))
+      .height(px2vp(40 * 3.5))
+      .margin({ left: px2vp(14 * 3.5)})
+
+
+  }
+  .width(CommonConstants.FULL_PARENT)
+}
 function FirstGridBuilder(items: ItemData[], context: Context) {
   Grid() {
     ForEach(items, (item: ItemData) => {
@@ -135,7 +162,7 @@ function SecondGridBuilder(items: ItemData[]) {
       }
       .onClick(() => {
         // 未完成开发入口弹出提示；已完成页面执行路由跳转
-        if (item.name === 'More' || item.name === 'ticket' || item.name === 'Shopping' || item.name === 'ExitEntry') {
+        if (item.name === 'More') {
           promptAction.showToast({
             message: '功能还在开发中'
           })
@@ -229,6 +256,58 @@ export struct HomePage {
     this.currentCity = city
     this.isCityPickerShow = false
     promptAction.showToast({ message: `已选择：${city}` })
+
+  @Builder
+  FirstGridBuilder(items: ItemData[]) {
+    Grid() {
+      ForEach(items, (item: ItemData) => {
+        GridItem() {
+          Column() {
+            Image(item.img)
+              .width(px2vp(48 * 3.5))
+              .height(px2vp(48 * 3.5))
+            Text(item.title)
+              .fontSize(px2vp(16 * 3.5))
+              .fontColor(Color.White)
+              .margin({ top: px2vp(8 * 3.5) })
+          }
+        }
+        .onClick(() => {
+          switch (item.name) {
+            case 'scan':
+              let options: scanBarcode.ScanOptions = {
+                scanTypes: [scanCore.ScanType.ALL],
+                enableMultiMode: true,
+                enableAlbum: true
+              };
+              scanBarcode.startScanForResult(getContext(this), options).then((result: scanBarcode.ScanResult) => {
+                hilog.info(0x0001, '[Scan CPSample]',
+                  `Succeeded in getting ScanResult by promise with options, result is ${JSON.stringify(result)}`);
+              }).catch((error: BusinessError) => {
+                hilog.error(0x0001, '[Scan CPSample]',
+                  `Failed to get ScanResult by promise with options. Code:${error.code}, message: ${error.message}`);
+              });
+              break;
+            case 'Code':
+              UtilTools.getIns().creatQR().then((px: image.PixelMap | undefined) => {
+                if (px) {
+                  GlobalContext.getContext().setObject('px', px)
+                }
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
+              })
+              break
+            case 'Credentials':
+              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.HOMEPAGE + '_' + item.name)
+              break
+          }
+        })
+      }, (item: ItemData) => JSON.stringify(item))
+    }
+    .columnsTemplate('1fr 1fr 1fr 1fr')
+    .columnsGap('12vp')
+    .rowsGap('12vp')
+    .padding({ top: '25vp' })
+    .margin({ left: px2vp(15 * 3.5) })
   }
 
   build() {

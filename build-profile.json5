@@ -5,7 +5,6 @@
         "name": "default",
         "signingConfig": "default",
         "compatibleSdkVersion": "5.0.1(13)",
-        "targetSdkVersion": "5.0.1(13)",
         "runtimeOS": "HarmonyOS"
       }
     ],
@@ -35,30 +34,86 @@
     {
       "name": "common",
       "srcPath": "./common/common",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     },
     {
       "name": "home",
       "srcPath": "./features/home",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     },
     {
       "name": "message",
       "srcPath": "./features/message",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     },
     {
       "name": "mine",
       "srcPath": "./features/mine",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     },
     {
       "name": "office",
       "srcPath": "./features/office",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     },
     {
       "name": "network",
-      "srcPath": "./common/network"
+      "srcPath": "./common/network",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     },
     {
       "name": "RouterModule",
       "srcPath": "./features/RouterModule",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

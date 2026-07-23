@@ -15,25 +15,22 @@
  */
 
 export default class RentingHouseData {
+  img: Resource
+  rentingTag: string     // 整租 / 合租
+  roomName: string       // 小区名称
+  roomType: string       // 一居室 / 二居室 / 三居室 / 四居室
+  size: string           // 面积
+  price: string          // 月租(元)d
+  decoration: string     // 精装 / 简装 / 毛坯
 
-  img:Resource
-  rentingTag:string
-  roomName:string
-  roomType:string
-  size:string
-  price:string
-
-  constructor(img: Resource, rentingTag: string, roomName: string, roomType: string, size: string, price: string) {
+  constructor(img: Resource, rentingTag: string, roomName: string, roomType: string,
+    size: string, price: string, decoration: string) {
     this.img = img
     this.rentingTag = rentingTag
     this.roomName = roomName
     this.roomType = roomType
     this.size = size
     this.price = price
+    this.decoration = decoration
   }
-
-
-
-
-
 }

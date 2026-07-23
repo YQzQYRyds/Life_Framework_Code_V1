@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,35 +14,39 @@
  */
 
 export default class SocialSecurityData {
+  name: string           // 姓名
+  company: string        // 所在公司
+  status: boolean        // 状态：正常/停用
+  idCard: string         // 身份证号码/社保卡号
+  city: string           // 参保城市
+  baseAmount: number     // 社保缴费基数
+  accountBalance: number // 社保个人账户余额
+  categories: Array<Category>
 
-  name:string
-
-  Company:string
-
-  status:boolean
-
-  account:string
-
-  categories:Array<Category>
-
-  constructor(name: string, Company: string, status: boolean, account: string, categories: Array<Category>) {
+  constructor(name: string, company: string, status: boolean, idCard: string, city: string, baseAmount: number, accountBalance: number, categories: Array<Category>) {
     this.name = name
-    this.Company = Company
+    this.company = company
     this.status = status
-    this.account = account
+    this.idCard = idCard
+    this.city = city
+    this.baseAmount = baseAmount
+    this.accountBalance = accountBalance
     this.categories = categories
   }
-
 }
 
-export class Category{
-  icon:Resource
-  title:string
-  money:number
+export class Category {
+  icon: Resource        // 图标
+  title: string         // 险种名称
+  money: number         // 当前余额/账户金额
+  subMoney?: number     // 本月个人/单位缴存金额（扩展项）
+  desc?: string         // 详细说明（如：单位12%，个人8%）
 
-  constructor(icon: Resource, title: string, money: number) {
+  constructor(icon: Resource, title: string, money: number, subMoney?: number, desc?: string) {
     this.icon = icon
     this.title = title
     this.money = money
+    this.subMoney = subMoney
+    this.desc = desc
   }
 }

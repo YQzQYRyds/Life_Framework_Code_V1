@@ -44,7 +44,7 @@ export function webPageBuilder(value: object) {
   }
 }
 
-let builderName = BuilderNameConstants.WebPage;
+let builderName: string = BuilderNameConstants.WebPage;
 if (!RouterModule.getBuilder(builderName)) {
   const builder: WrappedBuilder<[object]> = wrapBuilder(webPageBuilder);
   RouterModule.registerBuilder(builderName, builder);
